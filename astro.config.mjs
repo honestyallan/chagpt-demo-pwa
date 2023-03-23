@@ -3,7 +3,7 @@ import unocss from 'unocss/astro'
 import solidJs from '@astrojs/solid-js'
 
 import node from '@astrojs/node'
-import astroPWA from '@vite-pwa/astro'
+import { VitePWA } from 'vite-plugin-pwa'
 import vercel from '@astrojs/vercel/edge'
 import netlify from '@astrojs/netlify/edge-functions'
 import vercelDisableBlocks from './plugins/vercelDisableBlocks'
@@ -23,7 +23,7 @@ const envAdapter = () => {
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    astroPWA({
+    VitePWA({
       includeAssets: ['favicon.svg'],
       registerType: 'autoUpdate',
       manifest: {
@@ -52,6 +52,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        globDirectory: 'dist',
         navigateFallback: '/',
       },
       client: {
